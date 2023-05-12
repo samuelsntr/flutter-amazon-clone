@@ -1,9 +1,15 @@
 import 'package:amazone_clone/features/auth/screens/auth_screen.dart';
+import 'package:amazone_clone/providers/user_provider.dart';
 import 'package:amazone_clone/router.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
