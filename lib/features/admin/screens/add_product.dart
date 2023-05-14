@@ -4,6 +4,7 @@ import 'package:amazone_clone/common/widget/custom_button.dart';
 import 'package:amazone_clone/common/widget/custom_textfield.dart';
 import 'package:amazone_clone/constants/global_variables.dart';
 import 'package:amazone_clone/constants/utils.dart';
+import 'package:amazone_clone/features/admin/services/admin_services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class _AddProductState extends State<AddProduct> {
   final TextEditingController productQuantityController =
       TextEditingController();
 
+  AdminServices adminServices = AdminServices();
+
+  final _addProductFormKey = GlobalKey<FormState>();
   String category = 'Mobiles';
 
   List<File> images = [];
@@ -32,6 +36,20 @@ class _AddProductState extends State<AddProduct> {
     setState(() {
       images = resImg;
     });
+  }
+
+  void sellProduct() {
+    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProduct(
+        context: context,
+        name: productNameController.text,
+        description: productDescController.text,
+        price: double.parse(productPriceController.text),
+        quantity: double.parse(productQuantityController.text),
+        category: category,
+        images: images,
+      );
+    }
   }
 
   @override
@@ -69,6 +87,7 @@ class _AddProductState extends State<AddProduct> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _addProductFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -166,7 +185,7 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                CustomButton(text: 'Sell', onTap: () {})
+                CustomButton(text: 'Sell', onTap: sellProduct)
               ],
             ),
           ),
