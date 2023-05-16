@@ -3,9 +3,8 @@ import 'package:amazone_clone/features/home/widgets/address.box.dart';
 import 'package:amazone_clone/features/home/widgets/carousel_image.dart';
 import 'package:amazone_clone/features/home/widgets/deal_day.dart';
 import 'package:amazone_clone/features/home/widgets/top_categories.dart';
-import 'package:amazone_clone/providers/user_provider.dart';
+import 'package:amazone_clone/features/search/screens/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -16,9 +15,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void navigateToQuery(String query) {
+    Navigator.pushNamed(context, SearchScreen());
+  }
+
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    // final user = Provider.of<UserProvider>(context).user;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -40,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
+                      onFieldSubmitted: navigateToQuery,
                       decoration: InputDecoration(
                           prefixIcon: InkWell(
                             onTap: () {},

@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:amazone_clone/providers/user_provider.dart';
 
 class AuthService {
-  // sign up user
+  // SIGN UP USER
   void signUpUser({
     required BuildContext context,
     required String name,
@@ -50,7 +50,7 @@ class AuthService {
     }
   }
 
-  // sign in user
+  // SIGN IN USER
   void signInUser({
     required BuildContext context,
     required String email,
@@ -87,7 +87,7 @@ class AuthService {
     }
   }
 
-  // get user data
+  // GET USER DATA
   void getUserData(
     BuildContext context,
   ) async {
