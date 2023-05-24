@@ -1,4 +1,6 @@
 import 'package:amazone_clone/constants/global_variables.dart';
+import 'package:amazone_clone/features/admin/screens/analitics_screen.dart';
+import 'package:amazone_clone/features/admin/screens/orders_screen.dart';
 import 'package:amazone_clone/features/admin/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +18,8 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const ProductScreen(),
-    const Center(child: Text('Analitics Page')),
-    const Center(child: Text('Cart Page'))
+    const AnalicticScreen(),
+    const OrderScreenAdmin()
   ];
 
   void updatePage(int page) {

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:amazone_clone/models/ratings.dart';
+
 class Product {
   final String name;
   final String description;
@@ -8,6 +10,7 @@ class Product {
   final List<String> images;
   final String category;
   final String? id;
+  final List<Rating>? rating;
   Product({
     required this.name,
     required this.description,
@@ -16,6 +19,7 @@ class Product {
     required this.images,
     required this.category,
     this.id,
+    this.rating,
   });
   // rating
 
@@ -31,7 +35,9 @@ class Product {
     if (id != null) {
       result.addAll({'id': id});
     }
-
+    if (rating != null) {
+      result.addAll({'ratings': rating});
+    }
     return result;
   }
 
@@ -44,6 +50,13 @@ class Product {
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       id: map['_id'],
+      rating: map['ratings'] != null
+          ? List<Rating>.from(
+              map['ratings']?.map(
+                (x) => Rating.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
 

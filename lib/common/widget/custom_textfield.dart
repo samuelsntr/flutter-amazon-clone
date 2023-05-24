@@ -6,14 +6,17 @@ class CustomTextfield extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.maxLines = 1,
+    this.obsureText,
   });
   final TextEditingController controller;
   final String hintText;
   final int maxLines;
+  final bool? obsureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obsureText == null ? false : true,
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
