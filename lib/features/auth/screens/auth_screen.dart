@@ -50,6 +50,7 @@ class _AuthScreenState extends State<AuthScreen> {
       email: _emailController.text,
       password: _passController.text,
     );
+    setState(() {});
   }
 
   @override

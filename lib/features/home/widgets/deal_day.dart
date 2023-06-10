@@ -63,9 +63,9 @@ class _DealDayState extends State<DealDay> {
                       alignment: Alignment.topLeft,
                       padding:
                           const EdgeInsets.only(left: 15, top: 5, right: 40),
-                      child: const Text(
-                        '\$230',
-                        style: TextStyle(fontSize: 18),
+                      child: Text(
+                        'Rp${product!.price}',
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                     Container(

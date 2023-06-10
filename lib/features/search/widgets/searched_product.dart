@@ -46,7 +46,9 @@ class SearchedProduct extends StatelessWidget {
                   Container(
                     width: 220,
                     padding: const EdgeInsets.only(left: 10, top: 5),
-                    child: Stars(rating: avgRating),
+                    child: Stars(
+                      rating: avgRating,
+                    ),
                   ),
                   Container(
                     width: 220,
@@ -56,6 +58,7 @@ class SearchedProduct extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                       maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Container(

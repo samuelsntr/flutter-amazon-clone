@@ -9,11 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
+  runApp(
     ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+      create: (_) => UserProvider(),
+      child: const MyApp(),
     ),
-  ], child: const MyApp()));
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -35,26 +36,41 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Amazon Clone',
-        theme: ThemeData(
-          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
-          colorScheme: const ColorScheme.light(
-            primary: GlobalVariables.secondaryColor,
-          ),
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-          ),
-          // useMaterial3: true, // can remove this line
+      debugShowCheckedModeBanner: false,
+      title: 'Amazon Clone',
+      theme: ThemeData(
+        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        colorScheme: const ColorScheme.light(
+          primary: GlobalVariables.secondaryColor,
         ),
-        onGenerateRoute: (settings) => generateRoute(settings),
-        home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? Provider.of<UserProvider>(context).user.type == 'user'
-                ? const BottomBar()
-                : const AdminScreen()
-            : const AuthScreen());
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
+        // useMaterial3: true, // can remove this line
+      ),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: Consumer<UserProvider>(
+        builder: (context, userProvider, _) {
+          final userType = userProvider.user.type;
+          if (userProvider.user.token.isNotEmpty) {
+            if (userType == 'user') {
+              return const BottomBar();
+            } else if (userType == 'admin') {
+              return const AdminScreen();
+            }
+          }
+          return const AuthScreen();
+        },
+      ),
+    );
+    // Provider.of<UserProvider>(context).user.token.isNotEmpty
+    //     ? Provider.of<UserProvider>(context, listen: false).user.type ==
+    //             'user'
+    //         ? const BottomBar()
+    //         : const AdminScreen()
+    //     : const AuthScreen());
   }
 }
