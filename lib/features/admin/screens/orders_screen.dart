@@ -15,7 +15,6 @@ class OrderScreenAdmin extends StatefulWidget {
 class _OrderScreenAdminState extends State<OrderScreenAdmin> {
   final AdminServices adminServices = AdminServices();
   List<Order>? orderList;
-
   @override
   void initState() {
     super.initState();

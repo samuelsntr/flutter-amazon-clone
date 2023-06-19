@@ -21,8 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<UserProvider>(context).user;
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -72,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderSide:
                                 BorderSide(color: Colors.black38, width: 1),
                           ),
-                          hintText: 'thriftHive',
+                          hintText: 'Search in ThriftHive',
                           hintStyle: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 17)),
                     ),
@@ -94,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             AddressBox(),
             SizedBox(height: 10),
             TopCategories(),
@@ -108,6 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
       // Center(
       //   child: Text(user.toJson()),
       // ),
-    );
+    ); // final user = Provider.of<UserProvider>(context).user;
   }
 }
