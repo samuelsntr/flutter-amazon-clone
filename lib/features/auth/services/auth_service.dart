@@ -37,7 +37,9 @@ class AuthService {
       http.Response res = await http.post(Uri.parse('$uri/api/signup'),
           body: user.toJson(),
           headers: <String, String>{
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': '*/*'
           });
 
       httpErrorHandle(
@@ -67,6 +69,7 @@ class AuthService {
         }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': '*/*'
         },
       );
       httpErrorHandle(

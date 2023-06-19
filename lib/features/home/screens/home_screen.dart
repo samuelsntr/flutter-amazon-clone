@@ -21,8 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<UserProvider>(context).user;
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -92,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             AddressBox(),
             SizedBox(height: 10),
             TopCategories(),
@@ -108,6 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
       // Center(
       //   child: Text(user.toJson()),
       // ),
-    );
+    ); // final user = Provider.of<UserProvider>(context).user;
   }
 }
